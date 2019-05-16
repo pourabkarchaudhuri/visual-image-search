@@ -61,7 +61,7 @@ $ pip install -r requirements.txt
 ## Usage
 ```bash
 # Clone the code and install libraries
-$ git clone https://github.com/matsui528/sis.git
+$ git clone https://github.com/pourabkarchaudhuri/visual-image-search.git
 $ cd sis
 $ pip install -r requirements.txt
 
@@ -91,10 +91,11 @@ $ source ~/.bashrc  # Activate anaconda
 
 
 
-## Citation
-
-    @misc{sis,
-	    author = {Yusuke Matsui},
-	    title = {Sis: Simple Image Search Engine},
-	    howpublished = {\url{https://github.com/matsui528/sis}}
-    }
+   [Tensorflow]: <https://www.tensorflow.org/>
+   [Python]: <https://www.python.org/>
+   [Anaconda]: <https://www.anaconda.com/download/>
+   [CUDA]: <https://developer.nvidia.com/cuda-90-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exelocal>
+   [cuDNN]: <https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v7.0.5/prod/9.0_20171129/cudnn-9.0-windows10-x64-v7>
+   [Pretrained Model]: <https://drive.google.com/open?id=1sOMaZYWyWJJKJkQFVf3TUTX6-1iyR-kV>
+   [C/C++ Build Tools]: <https://go.microsoft.com/fwlink/?LinkId=691126>
+  
