@@ -74,6 +74,54 @@ $ python offline.py
 $ python server.py
 # Now you can do the search via localhost:5000
 ```
+
+## Testing via APIs
+
+----
+  Returns json data about similar matches.
+
+* **URL**
+
+  /recognize
+
+* **Method:**
+
+  `POST`
+  
+*  **Headers**
+
+   **Required:**
+ 
+   `Content-Type=application/json`
+
+* **Data Params**
+
+  `{ "image_string": "BASE64_OF_IMAGE" }`
+
+* **Sample Response:**
+
+  ```javascript
+    {
+    "details": [
+        {
+            "name": "farmhouse_TableLamp4",
+            "path": "http://localhost:5000/static/img/farmhouse_TableLamp4.jpg",
+            "score": "0.8868542"
+        },
+        {
+            "name": "farmhouse_TableLamp5",
+            "path": "http://localhost:5000/static/img/farmhouse_TableLamp5.jpg",
+            "score": "0.93646115"
+        },
+        {
+            "name": "traditional_TableLamp7",
+            "path": "http://localhost:5000/static/img/traditional_TableLamp7.jpg",
+            "score": "0.9399547"
+        }
+     ]
+  }
+  ```
+
 ## Launch on AWS EC2
 - You can easily launch Sis on AWS EC2 as follows. Note that the following configuration is just for the demo purpose, which would not be secure.
 - To run the server on AWS, please first open the port 5000 and launch an EC2 instance. Note that you can create a security group such that port 5000 is opened.
