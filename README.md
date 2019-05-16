@@ -1,20 +1,62 @@
-# Sis: Simple Image Search Engine
+# Visual Image Search
 
-## [Demo](http://www.simple-image-search.xyz/)
+
 ![](http://yusukematsui.me/project/sis/img/screencapture2.jpg)
 
 ## Workflow
 ![](http://yusukematsui.me/project/sis/img/overview.jpg)
 
 ## Overview
-- *Sis* is a simple image-based image search engine using Keras + Flask. You can launch the search engine just by running two python scripts.
+- *Vis* is a simple image-based image search engine using Keras + Flask. You can launch the search engine just by running two python scripts.
 - `offline.py`: This script extracts deep features from images. Given a set of database images, a 4096D fc6-feature is extracted for each image using the VGG16 network with ImageNet pre-trained weights.
 - `server.py`: This script runs a web-server. You can send your query image to the server via a Flask web-intereface. Then relevant images to the query are retrieved by the simple nearest neighbor search.
-- On an aws-ec2 instance with t2.large, the feature extraction takes 0.9 s per image. The search for 1000 images takes 10 ms. We tested Sis on Ubuntu 16.04 with Python3.
+- On an aws-ec2 instance with t2.large, the feature extraction takes 0.9 s per image. The search for 1000 images takes 10 ms. We tested Vis on Ubuntu 16.04 with Python3 and also on Win10 with Python3.
 
-## Links
-- [Demo](http://www.simple-image-search.xyz/)
-- [Project page](http://yusukematsui.me/project/sis/sis.html)
+
+### Technology
+
+VIS uses a number of open source projects to work properly:
+
+* [Tensorflow] - A google open-source ML framework
+* [Python] - awesome language we love
+
+### Environment Setup
+
+##### This was built on Windows 10.
+
+These were the pre-requisities :
+
+##### NVIDIA CUDA Toolkit
+* [CUDA] - parallel computing platform and programming model developed by NVIDIA for general computing on graphical processing units (GPUs). Download and Install all the patches. During install, choose Custom and uncheck the Visual Studio Integration checkbox.
+
+##### Download cuDNN
+* [cuDNN] - The NVIDIA CUDA® Deep Neural Network library (cuDNN) is a GPU-accelerated library of primitives for deep neural networks. Create a NVIDIA developer account to download.
+
+##### Set Path :
+Add the following paths,
+&nbsp;
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin
+&nbsp;
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\libnvvp
+&nbsp;
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\extras\CUPTI\libx64
+
+##### Install [Anaconda](https://www.anaconda.com/download/) with 3.6 x64
+
+```sh
+$ conda update conda
+```
+
+##### Run package installer
+
+```sh
+$ pip install -r requirements.txt
+```
+
+##### Install C/C++ Build tools
+
+* [C/C++ Build Tools] - Custom librarires required to build C based implementations to Python runnable builds
+
 
 ## Usage
 ```bash
