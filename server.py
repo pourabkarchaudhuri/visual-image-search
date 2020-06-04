@@ -10,10 +10,15 @@ from werkzeug.utils import secure_filename
 import codecs, json 
 import base64
 import time
+import json
 app = Flask(__name__)
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
+with open('sku.json') as f:
+    sku_data = json.load(f)
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+hostname = "http://localhost:5000/"
+PORT = 5000
 
 # Read image features
 fe = FeatureExtractor()
@@ -104,14 +109,24 @@ def post_example():
                     dists = np.linalg.norm(features - query, axis=1)  # Do search
                     ids = np.argsort(dists)[:8] # Top 8 results
                     data ={ "details" : []}
-                    def add_info(info):
-                        data["details"].append(info)
+                    # def add_info(info):
+                        
                     for id in ids:
                         info = {}
-                        info["score"]=str(dists[id])
-                        info["path"]="http://localhost:5000/"+img_paths[id]
-                        info["name"]=img_name[id]
-                        add_info(info)
+                        # info["score"]=dists[id]
+                        info["path"]=hostname + img_paths[id]
+                        info["id"]= img_name[id]
+                        
+                        for sku in sku_data['sku']:
+                            if str(sku['id']) == str(img_name[id]):
+                                # print("Found SKU : ", sku)
+                                info["skuName"] = sku['skuName']
+                                info["skuCategory"] = sku['skuCategory']
+                                info["ar"] = sku['ar']
+
+                        data["details"].append(info)   
+
+                    # print(data)   
                     return jsonify(data)
 
         else:
@@ -130,4 +145,4 @@ def get_status_code(argument, message):
     return res
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=PORT)
