@@ -113,7 +113,7 @@ def post_example():
                         
                     for id in ids:
                         info = {}
-                        # info["score"]=dists[id]
+                        info["score"]=str(round(dists[id], 2))
                         info["path"]=hostname + img_paths[id]
                         info["id"]= img_name[id]
                         
