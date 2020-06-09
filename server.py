@@ -113,18 +113,19 @@ def post_example():
                         
                     for id in ids:
                         info = {}
-                        info["score"]=str(round(dists[id], 2))
-                        info["path"]=hostname + img_paths[id]
-                        info["id"]= img_name[id]
-                        
-                        for sku in sku_data['sku']:
-                            if str(sku['id']) == str(img_name[id]):
-                                # print("Found SKU : ", sku)
-                                info["skuName"] = sku['skuName']
-                                info["skuCategory"] = sku['skuCategory']
-                                info["ar"] = sku['ar']
+                        if(round(dists[id], 2) < 0.97):
+                            info["score"]=str(round(dists[id], 2))
+                            info["path"]=hostname + img_paths[id]
+                            info["id"]= img_name[id]
+                            
+                            for sku in sku_data['sku']:
+                                if str(sku['id']) == str(img_name[id]):
+                                    # print("Found SKU : ", sku)
+                                    info["skuName"] = sku['skuName']
+                                    info["skuCategory"] = sku['skuCategory']
+                                    info["ar"] = sku['ar']
 
-                        data["details"].append(info)   
+                            data["details"].append(info)   
 
                     # print(data)   
                     return jsonify(data)
